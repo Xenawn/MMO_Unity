@@ -13,22 +13,27 @@ public class PlayerController : MonoBehaviour
     public GameObject _obj;
     void Update()
     {
-       
+       // Local => World
+       // TransformDirection
+
+        //World => Local
+        // InverseTransformDirection
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += Vector3.forward * Time.deltaTime * _speed;
+            transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * _speed);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += new Vector3(0, 0, -1) * Time.deltaTime * _speed;
+            
+            transform.position += transform.TransformDirection(Vector3.back * Time.deltaTime * _speed);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * _speed;
+            transform.position += transform.TransformDirection(Vector3.left * Time.deltaTime * _speed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(1, 0, 0) * Time.deltaTime * _speed;
+            transform.position += transform.TransformDirection(Vector3.right * Time.deltaTime * _speed);
         }
     }
 }
