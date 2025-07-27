@@ -38,10 +38,12 @@ public class TestCollision : MonoBehaviour
 
             Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 1.0f);
             RaycastHit hit;
-            
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            LayerMask m1 = LayerMask.GetMask("Monster") | LayerMask.GetMask("Wall"); // 비트 플래그 대신
+            int mask = (1 << 8)|(1<<9);
+            if (Physics.Raycast(ray, out hit, 100.0f, mask))
             {
                 Debug.Log($"RayCast Camera @ {hit.collider.gameObject.name}");
+                Debug.Log($"RayCast Camera @ {hit.collider.gameObject.tag}");
             }
         }
 
