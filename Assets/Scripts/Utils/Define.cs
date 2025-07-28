@@ -9,4 +9,10 @@ public class Define
     {
         QuaterView,
     }
+
+    public enum MouseEvent
+    {
+        Press,
+        Click
+    }
 }
