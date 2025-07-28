@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
                 //    moveDist = dir.magnitude;
                 transform.position += dir.normalized * moveDist;
                 // 이동하는 값이 현재 우리가 남은 거리보다는 작아야한다.
-                transform.LookAt(_destPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir),10*Time.deltaTime);
             }          
             
         }
