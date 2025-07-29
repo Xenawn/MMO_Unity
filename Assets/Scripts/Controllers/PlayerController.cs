@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     float _speed = 10.0f;
     bool _moveToDset = false;
     Vector3 _destPos;
-
+    float wait_run_ratio = 0;
     private void Start()
     {
         Managers.Input.KeyAction -= OnKeyboard;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         if (_moveToDset)
         {
             Vector3 dir = _destPos-transform.position;
-            if (dir.magnitude < 0.0001f) // float을 빼면 오차범위가 있음
+            if (dir.magnitude < 0.001f) // float을 빼면 오차범위가 있음
             {
                 _moveToDset = false;
             }
@@ -49,8 +49,26 @@ public class PlayerController : MonoBehaviour
                 transform.position += dir.normalized * moveDist;
                 // 이동하는 값이 현재 우리가 남은 거리보다는 작아야한다.
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir),10*Time.deltaTime);
-            }          
+            }
             
+            
+        }
+        if (_moveToDset)
+        {
+           
+           wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1.0f, 10.0f * Time.deltaTime);
+            //wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime);
+            Animator anim = GetComponent<Animator>();
+            anim.SetFloat("wait_run_ratio", wait_run_ratio);
+            anim.Play("WAIT_RUN");
+        }
+        else
+        {
+            wait_run_ratio = Mathf.Lerp(wait_run_ratio, 0.0f, 10.0f * Time.deltaTime);
+         
+            Animator anim = GetComponent<Animator>();
+            anim.SetFloat("wait_run_ratio", wait_run_ratio);
+            anim.Play("WAIT_RUN");
         }
     }
 
@@ -83,8 +101,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnMouseClicked(Define.MouseEvent evt)
     {
-        if (evt != Define.MouseEvent.Click)
-            return;
+        
         Debug.Log("OnMouseClicked");
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
