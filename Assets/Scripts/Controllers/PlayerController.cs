@@ -25,9 +25,7 @@ public class PlayerController : MonoBehaviour
     }
     void UpdateDie()
     {
-
     }
-
     void UpdateMoving()
     {
 
@@ -45,20 +43,18 @@ public class PlayerController : MonoBehaviour
             // 이동하는 값이 현재 우리가 남은 거리보다는 작아야한다.
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
         }
-
-        if (_state == PlayerState.Moving)
-        {
-
-            //wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime);
-            Animator anim = GetComponent<Animator>();
-        }
         
-
+        //wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime);
+        // 현재 게임 상태에 대한 정보를 넘겨준다.
+        Animator anim = GetComponent<Animator>();
+        anim.SetFloat("speed", _speed);
 
     }
     void UpdateIdle()
     {
-            Animator anim = GetComponent<Animator>();
+        Animator anim = GetComponent<Animator>();
+        anim.SetFloat("speed", 0);
+
     }
     public enum PlayerState
     {
@@ -74,7 +70,6 @@ public class PlayerController : MonoBehaviour
         //World => Local
         // InverseTransformDirection
 
-
         switch (_state)
         {
 
@@ -88,10 +83,7 @@ public class PlayerController : MonoBehaviour
                 UpdateDie();
                 break;
         }
-
-
     }
-
 
     void OnMouseClicked(Define.MouseEvent evt)
     {
