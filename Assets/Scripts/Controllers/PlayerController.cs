@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float _speed = 10.0f;
     Vector3 _destPos;
-    float wait_run_ratio = 0;
     PlayerState _state = PlayerState.Idle;
     private void Start()
     {
@@ -50,11 +49,8 @@ public class PlayerController : MonoBehaviour
         if (_state == PlayerState.Moving)
         {
 
-            wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1.0f, 10.0f * Time.deltaTime);
             //wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime);
             Animator anim = GetComponent<Animator>();
-            anim.SetFloat("wait_run_ratio", wait_run_ratio);
-            anim.Play("WAIT_RUN");
         }
         
 
@@ -62,12 +58,7 @@ public class PlayerController : MonoBehaviour
     }
     void UpdateIdle()
     {
-            wait_run_ratio = Mathf.Lerp(wait_run_ratio, 0.0f, 10.0f * Time.deltaTime);
-
             Animator anim = GetComponent<Animator>();
-            anim.SetFloat("wait_run_ratio", wait_run_ratio);
-            anim.Play("WAIT_RUN");
-        
     }
     public enum PlayerState
     {
