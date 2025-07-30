@@ -1870,14 +1870,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.14066853
-        functionName: OnRunEvent
-        data: "\uC548\uB155\uD558\uC1FC"
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 123
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
