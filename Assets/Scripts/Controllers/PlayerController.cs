@@ -19,9 +19,10 @@ public class PlayerController : MonoBehaviour
     PlayerState _state = PlayerState.Idle;
     private void Start()
     {
-
         Managers.Input.MouseAction -= OnMouseClicked;
         Managers.Input.MouseAction += OnMouseClicked;
+
+        Managers.Resource.Instantiate("UI/UI_Button");
     }
     void UpdateDie()
     {
