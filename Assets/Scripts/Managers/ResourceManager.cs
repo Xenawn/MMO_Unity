@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
 
 public class ResourceManager
 {
@@ -11,20 +11,19 @@ public class ResourceManager
  
     public GameObject Instantiate(string path, Transform parent = null)
     {
-        GameObject prefab = Load<GameObject>($"Prefabs/{path}");
-        if(prefab == null)
+        GameObject prefab = Resources.Load<GameObject>($"Prefabs/{path}");
+        if(prefab== null)
         {
-            Debug.Log($"Failed to load prefab : {path}");
+            Debug.Log($"Failed to load prefab:{path}");
             return null;
         }
-
-        return Object.Instantiate(prefab, parent);
+        return Object.Instantiate(prefab,parent);
     }
 
-    public void Destroy(GameObject go)
+    public void Destory(GameObject gameObject)
     {
-        if (go == null) return;
-
-        Object.Destroy(go);
+        if (gameObject == null)
+            return;
+        Object.Destroy(gameObject);
     }
 }

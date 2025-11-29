@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Define 
 {
-  
-    public enum CamerMode
+    public enum CameraMode
     {
-        QuaterView,
+        QuarterView,
     }
 
     public enum MouseEvent
