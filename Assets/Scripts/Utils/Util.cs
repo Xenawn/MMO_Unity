@@ -5,21 +5,28 @@ using UnityEngine;
 
 public class Util
 {
-    public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T:UnityEngine.Object  
+    public static GameObject FindChild(GameObject go, string name = null, bool recursive = false) 
     {
-        if (go == null) return null;
+        Transform transform = FindChild<Transform>(go, name, recursive);
+        if (transform == null)
+            return null;
+        return transform.gameObject;
+    }
 
-        if(recursive == false)
+    public static T FindChild<T>(GameObject go, string name =null, bool recursive = false) where T:UnityEngine.Object
+    {
+        if (go == null)
+            return null;
+        if(recursive== false)
         {
             for (int i = 0; i < go.transform.childCount; i++)
             {
-                Transform transform = go.transform.GetChild(0);
-                if (string.IsNullOrEmpty(name) || transform.name == name)
+                Transform transform = go.transform.GetChild(i);
+                if ((string.IsNullOrEmpty(name) || transform.name == name))
                 {
-                    transform.GetComponent<T>();
-                    T component = transform.GetComponent<T>();
-                    if(component != null)
-                        return component; 
+                    T component = transform.GetComponent<T>();    
+                    if(component!=null) 
+                        return component;
                 }
             }
         }
@@ -27,10 +34,12 @@ public class Util
         {
             foreach(T component in go.GetComponentsInChildren<T>())
             {
-                if(string.IsNullOrEmpty(name)||component.name == name) return component;
+                if ((string.IsNullOrEmpty(name)|| component.name == name))
+                {
+                    return component;
+                }
             }
         }
-
         return null;
     }
 }
