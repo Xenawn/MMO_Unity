@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_Button : UI_Base
@@ -25,6 +26,10 @@ public class UI_Button : UI_Base
     {
         TestObject
     }
+    enum Images
+    {
+        ItemIcon,
+    }
     
     [SerializeField]
     Text _text;
@@ -36,8 +41,12 @@ public class UI_Button : UI_Base
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
-
+        Bind<Image>(typeof(Images));
         GetText((int)Texts.ScoreText).text = "Bind Text";
+
+        GameObject go = GetImage((int)Images.ItemIcon).gameObject;
+        UI_EventHandler evt = go.GetComponent<UI_EventHandler>();
+        evt.OnDragHandler +=((PointerEventData data)=>{ evt.transform.position = data.position; });
     }
 
     public void OnButtonCLicked()
