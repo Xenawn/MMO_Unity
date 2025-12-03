@@ -38,6 +38,19 @@ public class UI_Button : UI_Popup
 
     private void Start()
     {
+        Init();
+    }
+
+    public void OnButtonClicked(PointerEventData data)
+    {
+        score++;
+
+        GetText((int)Texts.ScoreText).text = $"점수: {score}";
+    }
+
+    public override void Init()
+    {
+        base.Init();
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
@@ -50,12 +63,5 @@ public class UI_Button : UI_Popup
         AddUIEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
         //UI_EventHandler evt = go.GetComponent<UI_EventHandler>();
         //evt.OnDragHandler +=((PointerEventData data)=>{ evt.transform.position = data.position; });
-    }
-
-    public void OnButtonClicked(PointerEventData data)
-    {
-        score++;
-
-        GetText((int)Texts.ScoreText).text = $"점수: {score}";
     }
 }
