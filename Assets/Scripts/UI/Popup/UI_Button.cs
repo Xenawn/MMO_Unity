@@ -8,9 +8,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_Button : UI_Base
+public class UI_Button : UI_Popup
 {
-   
+
     enum Buttons
     {
         PointButton,
@@ -21,7 +21,7 @@ public class UI_Button : UI_Base
         PointText,
         ScoreText
     }
-    
+
     enum GameObjects
     {
         TestObject
@@ -30,7 +30,7 @@ public class UI_Button : UI_Base
     {
         ItemIcon,
     }
-    
+
     [SerializeField]
     Text _text;
     int score = 0;
@@ -42,7 +42,7 @@ public class UI_Button : UI_Base
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
-     
+
 
         GetButton((int)Buttons.PointButton).gameObject.AddUIEvent(OnButtonClicked);
         GameObject go = GetImage((int)Images.ItemIcon).gameObject;
