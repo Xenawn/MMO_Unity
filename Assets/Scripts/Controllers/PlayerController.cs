@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour
      
         Managers.Input.MouseAction -= OnMouseClicked;
         Managers.Input.MouseAction += OnMouseClicked;
-
-        UI_Inven ui = Managers.UI.ShowSceneUI<UI_Inven>();
     }
     void UpdateDie()
     {
