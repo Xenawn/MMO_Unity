@@ -9,13 +9,21 @@ public class TestSound : MonoBehaviour
     public AudioClip audioClip;
     public AudioClip audioClip2;
 
+    int i = 0;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{other.gameObject.name}");
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.PlayOneShot(audioClip);
-        audio.PlayOneShot(audioClip2);
-        float lifeTime = Mathf.Max(audioClip.length, audioClip2.length);
-        GameObject.Destroy(gameObject, lifeTime);
+        //Debug.Log($"{other.gameObject.name}");
+        //AudioSource audio = GetComponent<AudioSource>();
+        
+        //audio.PlayOneShot(audioClip);
+        //audio.PlayOneShot(audioClip2);
+        //float lifeTime = Mathf.Max(audioClip.length, audioClip2.length);
+        //GameObject.Destroy(gameObject, lifeTime);
+
+        i++;
+        if(i%2==0)
+            Managers.Sound.Play("UnityChan/univ0001",Define.Sound.Bgm );
+        else
+            Managers.Sound.Play( "UnityChan/univ0002", Define.Sound.Bgm);
     }
 }

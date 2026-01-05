@@ -42,6 +42,15 @@ public class Managers:MonoBehaviour
             }
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
+            s_instance._sound.Init();
         }
+    }
+
+    public static void Clear()
+    {
+        Input.Clear();
+        Sound.Clear();
+        Scene.Clear();
+        UI.Clear();
     }
 }
