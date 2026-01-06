@@ -6,17 +6,20 @@ public class Managers:MonoBehaviour
 {
     static Managers s_instance;
     static Managers Instance { get { Init(); return s_instance; } }// 유일한 매니저를 갖고온다.
+
+    PoolManager _pool = new PoolManager();
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
     UIManager _ui = new UIManager();
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
-
-    public static SoundManager Sound { get { return Instance._sound; } }
     public static InputManager Input { get { return Instance._input; } }
+    public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
+    public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
-    public static SceneManagerEx Scene { get { return Instance._scene; } }  
+  
 
 
     
